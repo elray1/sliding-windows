@@ -1,0 +1,31 @@
+---
+title: "sliding windows"
+author: "Evan L. Ray"
+date: "2/23/2021"
+output: html_document
+---
+
+# Introduction
+
+We're interested in generating predictions for classifications of activity type or energy expenditure for each second in time series data.  Here we explore approaches to doing this by combining predictions from classifiers that generate predictions from overlapping windows of varying lengths.
+
+# Models
+
+## Motivation and Notation
+
+We record accelerometer data $x_t$ at times $t = 1, \ldots, T$.  For example, $t$ may correspond to a 1-second interval, and $x_t$ is a vector of acceleration measurements at that time (e.g., at 100 Hz and 3 axes, $x_t$ may be a vector of length 300).  W have at our disposal 
+
+The idea is to use two kernel weightings to combine predictive distributions from classifications obtained using different window center points and different window sizes, as illustrated in the Figure below:
+
+![](sliding-windows.png)
+
+
+
+We describe the ideas in three stages:
+
+1. Overlapping windows of a fixed size; fixed kernel weighting
+2. Overlapping windows of varying sizes; fixed kernel weighting at each window size and fixed weighting across window sizes
+3. Overlapping windows of a fixed size; covariate-dependent kernel weighting
+
+## 1. Overlapping windows of a fixed size; fixed kernel weighting
+
